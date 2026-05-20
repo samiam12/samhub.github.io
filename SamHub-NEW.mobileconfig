@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>PayloadContent</key>
+    <array>
+      <dict>
+        <key>FullScreen</key>
+        <true/>
+        <key>IsRemovable</key>
+        <true/>
+        <key>Label</key>
+        <string>SamHub</string>
+        <key>PayloadDescription</key>
+        <string>Adds SamHub v2.0 to the Home Screen.</string>
+        <key>PayloadDisplayName</key>
+        <string>SamHub Web Clip</string>
+        <key>PayloadIdentifier</key>
+        <string>com.samhub.webclip.320b0507-89b0-4900-b91e-b7906350182e</string>
+        <key>PayloadOrganization</key>
+        <string>SamHub</string>
+        <key>PayloadType</key>
+        <string>com.apple.webClip.managed</string>
+        <key>PayloadUUID</key>
+        <string>320B0507-89B0-4900-B91E-B7906350182E</string>
+        <key>PayloadVersion</key>
+        <integer>1</integer>
+        <key>Precomposed</key>
+        <false/>
+        <key>URL</key>
+        <string>https://samiam12.github.io/samhub.github.io/?preview=1#home</string>
+      </dict>
+    </array>
+    <key>PayloadDescription</key>
+    <string>Install SamHub v2.0 as a Home Screen web clip.</string>
+    <key>PayloadDisplayName</key>
+    <string>SamHub v2.0</string>
+    <key>PayloadIdentifier</key>
+    <string>com.samhub.profile.d6d94373-63f5-4637-a21b-b5fe6ad160b4</string>
+    <key>PayloadOrganization</key>
+    <string>SamHub</string>
+    <key>PayloadRemovalDisallowed</key>
+    <false/>
+    <key>PayloadType</key>
+    <string>Configuration</string>
+    <key>PayloadUUID</key>
+    <string>D6D94373-63F5-4637-A21B-B5FE6AD160B4</string>
+    <key>PayloadVersion</key>
+    <integer>1</integer>
+  </dict>
+</plist>
