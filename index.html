@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>SamHub v2.0 | Guides For Sideloading</title>
+  <meta name="description" content="SamHub v2.0 is a sideloading hub with guides, DNS methods, certificates, direct installs, and beginner help." />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="SamHub" />
+  <link rel="apple-touch-icon" href="Made_By_Sam.webp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #07070d;
+      --panel: rgba(255,255,255,.055);
+      --panel2: rgba(255,255,255,.085);
+      --line: rgba(255,255,255,.14);
+      --text: #ffffff;
+      --muted: #b9b9c8;
+      --pink: #ff5b8f;
+      --blue: #3575ff;
+      --purple: #252787;
+      --green: #38d996;
+      --red: #ff5d6c;
+      --shadow: 0 22px 70px rgba(0,0,0,.45);
+      --radius: 26px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      min-height: 100%;
+      background: #000;
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow-x: hidden;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(255,91,143,.17), transparent 32rem),
+        radial-gradient(circle at top right, rgba(53,117,255,.17), transparent 34rem),
+        linear-gradient(180deg, #05050a, var(--bg));
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .app-shell {
+      width: min(100%, 430px);
+      min-height: 100svh;
+      margin: 0 auto;
+      background:
+        radial-gradient(circle at top left, rgba(255,91,143,.12), transparent 18rem),
+        radial-gradient(circle at top right, rgba(53,117,255,.12), transparent 18rem),
+        #05050a;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 0 80px rgba(0,0,0,.9);
+    }
+
+    .app-content {
+      min-height: 100svh;
+      padding: max(18px, env(safe-area-inset-top)) 18px calc(112px + env(safe-area-inset-bottom));
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 26px;
+    }
+
+    .app-name {
+      font-size: 1.05rem;
+      font-weight: 900;
+      letter-spacing: -.035em;
+      color: #fff;
+    }
+
+    .mode-pill {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 8px 11px;
+      font-size: .76rem;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .screen {
+      display: none;
+      animation: fade .18s ease;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .page-title {
+      font-size: clamp(2.35rem, 10vw, 3.35rem);
+      letter-spacing: -.065em;
+      line-height: .95;
+      margin-bottom: 22px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255,255,255,.11);
+    }
+
+    .section-title {
+      color: var(--pink);
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .17em;
+      font-weight: 900;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .hero-logo {
+      width: min(210px, 68%);
+      height: auto;
+      display: block;
+      margin: 10px auto 18px;
+      border-radius: 22px;
+      filter: drop-shadow(0 0 26px rgba(53,117,255,.24));
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 9vw, 3rem);
+      letter-spacing: -.07em;
+      line-height: 1;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .section-heading {
+      font-size: clamp(1.85rem, 7vw, 2.45rem);
+      letter-spacing: -.055em;
+      line-height: 1.06;
+      margin-bottom: 18px;
+    }
+
+    .hero-text, .text {
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: .98rem;
+    }
+
+    .hero-text {
+      text-align: center;
+      margin: 0 auto 22px;
+      max-width: 360px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      border: 0;
+      border-radius: 18px;
+      padding: 15px 16px;
+      background: linear-gradient(135deg, var(--pink), var(--blue));
+      color: #fff;
+      font-weight: 900;
+      box-shadow: 0 18px 48px rgba(53,117,255,.22);
+      cursor: pointer;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease, opacity .18s ease;
+      animation: floatIn .45s ease both;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 22px 56px rgba(53,117,255,.28);
+    }
+
+    .btn:active {
+      transform: scale(.97);
+    }
+
+    .btn.secondary {
+      background: rgba(255,255,255,.06);
+      border: 1px solid var(--line);
+      box-shadow: none;
+    }
+
+    .home-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 22px;
+      margin-bottom: 8px;
+      animation: floatIn .55s ease both;
+    }
+
+    .home-actions .btn {
+      min-height: 56px;
+      font-size: .96rem;
+    }
+
+    @keyframes floatIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes softPulse {
+      0%, 100% { box-shadow: 0 18px 48px rgba(53,117,255,.20); }
+      50% { box-shadow: 0 22px 62px rgba(255,91,143,.28); }
+    }
+
+    .download-box {
+      border: 1px solid rgba(255,255,255,.14);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.035));
+      border-radius: 26px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      margin: 20px 0 30px;
+      animation: floatIn .5s ease both;
+    }
+
+    .download-box h3 {
+      font-size: 1.25rem;
+      letter-spacing: -.04em;
+      margin-bottom: 8px;
+    }
+
+    .download-box p {
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: .92rem;
+      margin-bottom: 14px;
+    }
+
+    .locked-note {
+      display: none;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.055);
+      border-radius: 18px;
+      padding: 14px;
+      color: var(--muted);
+      line-height: 1.5;
+      margin: 16px 0;
+      font-weight: 700;
+      font-size: .92rem;
+    }
+
+    body.locked .locked-note { display: block; }
+    body.locked .app-only { display: none !important; }
+    body.unlocked .locked-only { display: none !important; }
+
+    body.unlocked .hero-logo {
+      width: min(170px, 58%);
+      margin-top: 4px;
+    }
+
+    body.unlocked .hero-title {
+      font-size: clamp(1.9rem, 8vw, 2.7rem);
+    }
+
+    body.unlocked .hero-text {
+      margin-bottom: 24px;
+    }
+
+    .video-card,
+    .video-thumb,
+    .play {
+      display: none;
+    }
+
+    .link-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      min-height: 76px;
+      padding: 0 18px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.035));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      margin-bottom: 14px;
+      font-size: 1.35rem;
+      font-weight: 900;
+      letter-spacing: -.04em;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      animation: floatIn .45s ease both;
+    }
+
+    .link-row:hover {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,.075);
+      border-color: rgba(255,255,255,.24);
+    }
+
+    .link-row:active {
+      transform: scale(.98);
+    }
+
+    .chev {
+      color: rgba(255,255,255,.55);
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .card, .cert-card {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.035));
+      border-radius: 24px;
+      padding: 18px;
+      margin-bottom: 14px;
+      box-shadow: var(--shadow);
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+      animation: floatIn .45s ease both;
+    }
+
+    .card:hover, .cert-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.24);
+    }
+
+    .card h3, .cert-top h3 {
+      font-size: 1.25rem;
+      letter-spacing: -.045em;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: .94rem;
+      margin-bottom: 14px;
+    }
+
+    .cert-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .status {
+      border-radius: 999px;
+      padding: 7px 10px;
+      font-size: .72rem;
+      font-weight: 900;
+      white-space: nowrap;
+      background: var(--green);
+      color: #07150f;
+    }
+
+    .status.backup { background: #3468f6; color: #fff; }
+    .status.revoked { background: var(--red); color: #fff; }
+
+    .search-box {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.045);
+      color: white;
+      border-radius: 18px;
+      padding: 14px 15px;
+      outline: none;
+      margin-bottom: 16px;
+    }
+
+    details {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.045);
+      border-radius: 18px;
+      padding: 16px;
+      margin-bottom: 12px;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      animation: floatIn .45s ease both;
+    }
+
+    details:hover {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,.065);
+      border-color: rgba(255,255,255,.23);
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 900;
+      line-height: 1.4;
+    }
+
+    details p {
+      color: var(--muted);
+      line-height: 1.65;
+      margin-top: 12px;
+      font-size: .94rem;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      left: 50%;
+      bottom: max(14px, env(safe-area-inset-bottom));
+      transform: translateX(-50%);
+      width: min(calc(100% - 34px), 390px);
+      z-index: 50;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+      background: rgba(10,10,18,.92);
+      backdrop-filter: blur(18px);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      border-radius: 24px;
+      padding: 10px;
+    }
+
+    body.locked .bottom-nav { display: none; }
+
+    .tab {
+      height: 58px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      color: rgba(255,255,255,.56);
+      font-size: 1.65rem;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      transition: transform .18s ease, color .18s ease, background .18s ease, outline-color .18s ease;
+    }
+
+    .tab:hover {
+      transform: translateY(-2px);
+      color: #fff;
+    }
+
+    .tab:active {
+      transform: scale(.92);
+    }
+
+    .tab.active {
+      color: white;
+      outline: 3px solid rgba(53,117,255,.9);
+      background: linear-gradient(135deg, rgba(255,91,143,.35), rgba(53,117,255,.35));
+    }
+
+    @media (min-width: 700px) {
+      .app-shell {
+        margin-top: 18px;
+        margin-bottom: 18px;
+        min-height: calc(100svh - 36px);
+        border-radius: 34px;
+      }
+    }
+  </style>
+</head>
+<body class="locked">
+  <div class="app-shell">
+    <div class="app-content">
+      <header class="topbar">
+        <span class="app-name">SamHub v2.0</span>
+        <span class="mode-pill" id="modePill">Install Required</span>
+      </header>
+
+      <main>
+        <section class="screen active" id="page-home">
+          <h1 class="page-title">Home</h1>
+
+          <img class="hero-logo" src="Made_By_Sam.webp" alt="SamHub v2.0 logo" />
+          <h2 class="hero-title">This is SamHub. Revamped.</h2>
+          <p class="hero-text">Welcome to SamHub v2.0. A sideloading hub with guides, DNS Methods, Direct Installs, powered by a team that fulfills your expectation of your sideloading experience.</p>
+
+          <div class="home-actions app-only">
+            <button class="btn" type="button" onclick="return false;">SamSign (SOON)</button>
+            <a class="btn secondary route-link" href="#direct-installs" data-page="direct-installs">Direct Installs</a>
+          </div>
+
+          <div class="download-box locked-only" id="downloadBox">
+            <h3>Download SamHub v2.0</h3>
+            <p>Install the iOS webclip profile to unlock the full app experience. Before installing, only this Home page is available.</p>
+            <a class="btn" href="SamHub.mobileconfig">Download Now</a>
+          </div>
+
+          <div class="locked-note locked-only">App sections unlock after SamHub opens from the iOS Home Screen webclip.</div>
+        </section>
+
+        <section class="screen app-only" id="page-dns">
+          <h1 class="page-title">DNS Methods</h1>
+          <div class="section-title">DNS Methods</div>
+          <div class="card">
+            <h3>DNS Methods</h3>
+            <p>You might be familiar with the "DNS Method" term, let's explain what that is.</p>
+            <p>DNS methods are used by sideloading communities to help reduce certificate blacklist issues. They are equipped with blocking out Apple servers that constantly track your device with the said certificate you attempt to use.</p>
+            <p>There are certain things you can and can't do. That can be explained below.</p>
+          </div>
+
+          <div class="card">
+            <h3>Khoindvn DNS</h3>
+            <p>Install this DNS profile before trying direct installs or certificates.</p>
+            <a class="btn" href="https://example.com" target="_blank" rel="noreferrer">Download Khoindvn DNS</a>
+          </div>
+
+          <details>
+            <summary>Can I restart my device whilst still using the DNS? What if my device dies? What if I need to install an update?</summary>
+            <p>Restarting your device does not keep the DNS on, it's simple to know that. Once your phone is turned on, those seconds without WiFi/data not activated yet are Apple's abilities to "blacklist" you from the use of the said certificate. It's best to ALWAYS keep the said device on. In cases of installing a new update, you MUST turn on Airplane Mode before doing so, then allowing device to connect to internet afterwards.</p>
+          </details>
+          <details>
+            <summary>Can I use a VPN whilst on the DNS?</summary>
+            <p>Most VPNs available pause the DNS even while it's activated through your DNS settings. It's best to not enable one. There are certain ways to get around that, but it's more safer to just stick with the DNS.</p>
+          </details>
+          <details>
+            <summary>Could I use any other DNS than the preferred one available?</summary>
+            <p>Other DNS's have their own sets of configurations, modifications, but it's mostly preferred to stick with the one we at SamHub recommend. It's not something to constantly worry about, as multiple tests prove the recommended DNS available here works as it intends to.</p>
+          </details>
+        </section>
+
+        <section class="screen app-only" id="page-certificates">
+          <h1 class="page-title">Certificates</h1>
+          <div class="section-title">Certificates</div>
+          <p class="text" style="margin-bottom:16px;">Here is the page of all available certificates up to date between the dates of 2024-25, to current 2026.</p>
+          <input class="search-box" id="certSearch" type="search" placeholder="Search certificates..." />
+
+          <div id="certificateGrid">
+            <article class="cert-card" data-name="hdfc codex certificate signed">
+              <div class="cert-top"><h3>Codex HDFC</h3><span class="status">Signed</span></div>
+              <p class="text">Download DNS before using this certificate. Update this card when status changes.</p>
+              <br><a class="btn" href="https://example.com" target="_blank" rel="noreferrer">Download</a>
+            </article>
+            <article class="cert-card" data-name="shanghai backup certificate backup signed">
+              <div class="cert-top"><h3>Shanghai Backup</h3><span class="status backup">Backup</span></div>
+              <p class="text">Use this if the main certificate is not working.</p>
+              <br><a class="btn" href="https://example.com" target="_blank" rel="noreferrer">Download</a>
+            </article>
+            <article class="cert-card" data-name="sunshine insurance certificate signed">
+              <div class="cert-top"><h3>Sunshine Insurance</h3><span class="status">Signed</span></div>
+              <p class="text">Good spot for p12, mobileprovision, password, and notes.</p>
+              <br><a class="btn" href="https://example.com" target="_blank" rel="noreferrer">Download</a>
+            </article>
+            <article class="cert-card" data-name="old certificate revoked">
+              <div class="cert-top"><h3>Old Certificate</h3><span class="status revoked">Revoked</span></div>
+              <p class="text">Keep revoked cards if you want users to know which certs no longer work.</p>
+              <br><a class="btn secondary" href="https://example.com" target="_blank" rel="noreferrer">Unavailable</a>
+            </article>
+          </div>
+        </section>
+
+        <section class="screen app-only" id="page-direct-installs">
+          <h1 class="page-title">Tools</h1>
+          <div class="section-title">Direct Installs</div>
+          <h2 class="section-heading">Available Direct Installs</h2>
+
+          <article class="card">
+            <img src="https://esign-ios.app/wp-content/uploads/2025/06/Esign.webp" alt="ESign logo" style="width:86px;height:86px;border-radius:22px;margin-bottom:14px;object-fit:cover;">
+            <h3>ESign</h3>
+            <p>For signing and installing IPA files.</p>
+            <a class="btn route-link" href="#esign" data-page="esign">Click Here</a>
+          </article>
+
+          <article class="card">
+            <img src="https://scarlet-ios.com/images/Scarlet-hero-shot.webp" alt="Scarlet logo" style="width:120px;height:86px;border-radius:22px;margin-bottom:14px;object-fit:contain;background:rgba(255,255,255,.05);">
+            <h3>Scarlet</h3>
+            <p>For signing and installing IPA files.</p>
+            <a class="btn route-link" href="#scarlet" data-page="scarlet">Click Here</a>
+          </article>
+        </section>
+
+        <section class="screen app-only" id="page-esign">
+          <h1 class="page-title">ESign</h1>
+          <p class="text" style="margin-bottom:16px;">Download DNS before installing.</p>
+          <a class="link-row" href="https://example.com" target="_blank" rel="noreferrer"><span>ESign Main Install</span><span class="chev">›</span></a>
+          <a class="link-row" href="https://example.com" target="_blank" rel="noreferrer"><span>ESign Backup Install</span><span class="chev">›</span></a>
+          <a class="link-row" href="https://example.com" target="_blank" rel="noreferrer"><span>ESign Mirror Install</span><span class="chev">›</span></a>
+        </section>
+
+        <section class="screen app-only" id="page-scarlet">
+          <h1 class="page-title">Scarlet</h1>
+          <p class="text" style="margin-bottom:16px;">Use DNS first. If Scarlet says unable to install, try the backup link.</p>
+          <a class="link-row" href="https://example.com" target="_blank" rel="noreferrer"><span>Scarlet Main Install</span><span class="chev">›</span></a>
+          <a class="link-row" href="https://example.com" target="_blank" rel="noreferrer"><span>Scarlet Backup Install</span><span class="chev">›</span></a>
+          <a class="link-row" href="https://example.com" target="_blank" rel="noreferrer"><span>Scarlet Mirror Install</span><span class="chev">›</span></a>
+        </section>
+
+        <section class="screen app-only" id="page-support">
+          <h1 class="page-title">Support</h1>
+          <a class="link-row" href="https://discord.com" target="_blank" rel="noreferrer"><span>Discord</span><span class="chev">›</span></a>
+          <a class="link-row" href="mailto:youremail@example.com"><span>Email Support</span><span class="chev">›</span></a>
+          <a class="link-row" href="https://youtube.com" target="_blank" rel="noreferrer"><span>YouTube</span><span class="chev">›</span></a>
+        </section>
+      </main>
+    </div>
+
+    <nav class="bottom-nav app-only" aria-label="App navigation">
+      <button class="tab route-link" data-page="direct-installs" aria-label="Tools">📁</button>
+      <button class="tab route-link" data-page="dns" aria-label="DNS Methods">🌐</button>
+      <button class="tab route-link active" data-page="home" aria-label="Home">⌂</button>
+      <button class="tab route-link" data-page="certificates" aria-label="Certificates">▤</button>
+      <button class="tab route-link" data-page="support" aria-label="Support">⚙</button>
+    </nav>
+  </div>
+
+  <script>
+    const screens = document.querySelectorAll('.screen');
+    const routeLinks = document.querySelectorAll('.route-link');
+    const tabs = document.querySelectorAll('.tab');
+    const modePill = document.querySelector('#modePill');
+    const certSearch = document.querySelector('#certSearch');
+    const certificateGrid = document.querySelector('#certificateGrid');
+    const allowedPages = ['home', 'dns', 'certificates', 'direct-installs', 'esign', 'scarlet', 'support'];
+
+    function isRunningAsIOSWebClip() {
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      const standalone = window.navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches;
+      return isIOS && standalone;
+    }
+
+    function isUnlocked() {
+      const params = new URLSearchParams(location.search);
+      if (params.get('preview') === '1') return true;
+      if (params.get('gate') === '1') return false;
+      return isRunningAsIOSWebClip();
+    }
+
+    function setMode() {
+      const unlocked = isUnlocked();
+      document.body.classList.toggle('locked', !unlocked);
+      document.body.classList.toggle('unlocked', unlocked);
+      modePill.textContent = unlocked ? 'App Version' : 'Install Required';
+      return unlocked;
+    }
+
+    function showPage(page, shouldScroll = true) {
+      const unlocked = setMode();
+      const safePage = allowedPages.includes(page) ? page : 'home';
+      const finalPage = unlocked ? safePage : 'home';
+
+      screens.forEach(screen => {
+        screen.classList.toggle('active', screen.id === `page-${finalPage}`);
+      });
+
+      tabs.forEach(tab => {
+        tab.classList.toggle('active', tab.dataset.page === finalPage);
+      });
+
+      if (location.hash !== `#${finalPage}`) {
+        history.replaceState(null, '', `#${finalPage}`);
+      }
+
+      if (shouldScroll) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    routeLinks.forEach(link => {
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        showPage(link.dataset.page);
+      });
+    });
+
+    window.addEventListener('load', () => {
+      const page = location.hash.replace('#', '') || 'home';
+      showPage(page, false);
+    });
+
+    window.addEventListener('popstate', () => {
+      showPage(location.hash.replace('#', ''), false);
+    });
+
+    if (certSearch) {
+      certSearch.addEventListener('input', () => {
+        const query = certSearch.value.trim().toLowerCase();
+        certificateGrid.querySelectorAll('.cert-card').forEach(card => {
+          const text = card.dataset.name.toLowerCase() + ' ' + card.textContent.toLowerCase();
+          card.style.display = text.includes(query) ? 'block' : 'none';
+        });
+      });
+    }
+  </script>
+</body>
+</html>
