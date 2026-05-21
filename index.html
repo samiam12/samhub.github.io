@@ -443,7 +443,7 @@
       transform: translateX(-50%);
       width: min(calc(100% - 24px), 390px);
       z-index: 50;
-      display: grid; grid-template-columns: repeat(5,1fr); gap: 5px;
+      display: grid; grid-template-columns: repeat(6,1fr); gap: 5px;
       background: rgba(20,18,25,.9);
       backdrop-filter: blur(24px) saturate(160%);
       -webkit-backdrop-filter: blur(24px) saturate(160%);
@@ -454,7 +454,7 @@
     body.locked .nav { display: none; }
 
     .tab {
-      height: 52px; border-radius: 14px;
+      height: 50px; border-radius: 14px;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center; gap: 3px;
       color: var(--t2);
@@ -466,9 +466,7 @@
     .tab:hover { color: var(--t1); }
     .tab:active { transform: scale(.92); }
     .tab.active { background: var(--coral); color: #fff; }
-
-
-    .form-card {
+.form-card {
       background: var(--s1);
       border: 1px solid var(--bdr0);
       border-radius: var(--rL);
@@ -569,7 +567,7 @@
         <p class="hero-sub">Welcome to SamHub v2.0. A sideloading hub with guides, DNS Methods, Direct Installs, powered by a team that fulfills your expectation of your sideloading experience.</p>
 
         <div class="home-grid app-only">
-          <a class="btn route-link" href="#samsign" data-page="samsign" data-nav-page="home">SamSign</a>
+          <a class="btn route-link" href="#samsign" data-page="samsign">SamSign</a>
           <a class="btn ghost route-link" href="#direct-installs" data-page="direct-installs">Direct Installs</a>
         </div>
       </div>
@@ -591,7 +589,6 @@
       <div class="section-title">DNS Methods</div>
 
       <div class="card">
-        <div class="card-icon"><i class="ph ph-globe"></i></div>
         <h3>DNS Methods</h3>
         <p>You might be familiar with the "DNS Method" term, let's explain what that is.</p>
         <p>DNS methods are used by sideloading communities to help reduce certificate blacklist issues. They are equipped with blocking out Apple servers that constantly track your device with the said certificate you attempt to use.</p>
@@ -599,7 +596,6 @@
       </div>
 
       <div class="card">
-        <div class="card-icon"><i class="ph ph-shield-check"></i></div>
         <h3>Khoindvn DNS</h3>
         <p>Install this DNS profile before trying direct installs or certificates.</p>
         <a class="btn" href="https://example.com" target="_blank" rel="noreferrer">
@@ -731,17 +727,7 @@
       <h1 class="page-title">Tools</h1>
       <div class="section-title">Direct Installs</div>
       <h2 class="section-heading">Available Direct Installs</h2>
-
-      <article class="card">
-        <div class="card-icon"><i class="ph ph-signature"></i></div>
-        <h3>SamSign</h3>
-        <p>Sign IPA files directly from your device.</p>
-        <a class="btn route-link" href="#samsign" data-page="samsign" data-nav-page="direct-installs">
-          Open SamSign <i class="ph ph-arrow-right"></i>
-        </a>
-      </article>
-
-      <article class="card">
+<article class="card">
         <img class="app-icon" src="https://esign-ios.app/wp-content/uploads/2025/06/Esign.webp" alt="ESign logo" />
         <h3>ESign</h3>
         <p>For signing and installing IPA files.</p>
@@ -853,14 +839,17 @@
 </div>
 
 <nav class="nav app-only" aria-label="App navigation">
+  <button class="tab route-link" data-page="samsign" aria-label="SamSign">
+    <i class="ph ph-signature"></i>
+  </button>
   <button class="tab route-link" data-page="direct-installs" aria-label="Tools">
     <i class="ph ph-wrench"></i>
   </button>
-  <button class="tab route-link" data-page="dns" aria-label="DNS Methods">
-    <i class="ph ph-globe"></i>
-  </button>
   <button class="tab route-link active" data-page="home" aria-label="Home">
     <i class="ph ph-house"></i>
+  </button>
+  <button class="tab route-link" data-page="dns" aria-label="DNS Methods">
+    <i class="ph ph-globe"></i>
   </button>
   <button class="tab route-link" data-page="certificates" aria-label="Certificates">
     <i class="ph ph-certificate"></i>
@@ -918,7 +907,7 @@
       screen.classList.toggle('active', screen.id === `page-${finalPage}`);
     });
 
-    const activeNavPage = navPageOverride || (finalPage === 'samsign' ? 'home' : finalPage);
+    const activeNavPage = navPageOverride || finalPage;
 
     tabs.forEach(tab => {
       tab.classList.toggle('active', tab.dataset.page === activeNavPage);
