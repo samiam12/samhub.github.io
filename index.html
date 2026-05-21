@@ -12,6 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <!-- Phosphor Icons — MIT License — free for production -->
   <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
   <style>
     :root {
@@ -54,11 +55,8 @@
     }
 
     a { color: inherit; text-decoration: none; }
-
-    /* Icon baseline */
     i.ph { display: inline-flex; align-items: center; justify-content: center; }
 
-    /* ─── Shell ──────────────────────────── */
     .shell {
       width: min(100%, 430px);
       min-height: 100svh;
@@ -67,6 +65,7 @@
       overflow: hidden;
       background: var(--bg);
     }
+
     .shell::before {
       content: '';
       position: fixed;
@@ -75,9 +74,8 @@
       pointer-events: none;
       z-index: 0;
       background:
-        radial-gradient(ellipse 260px 220px at 30% 0%,  rgba(224,104,120,.13) 0%, transparent 70%),
-        radial-gradient(ellipse 200px 180px at 82% 6%,  rgba(72,104,224,.11)  0%, transparent 65%),
-        radial-gradient(ellipse 180px 140px at 50% 100%,rgba(72,104,224,.07)  0%, transparent 70%);
+        radial-gradient(ellipse 260px 220px at 30% 0%, rgba(224,104,120,.10) 0%, transparent 70%),
+        radial-gradient(ellipse 200px 180px at 82% 6%, rgba(72,104,224,.08) 0%, transparent 65%);
     }
 
     .content {
@@ -86,14 +84,8 @@
       min-height: 100svh;
       padding: max(20px, env(safe-area-inset-top)) 18px calc(100px + env(safe-area-inset-bottom));
     }
+.topbar { display: none !important; }
 
-    /* ─── Topbar ──────────────────────── */
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 28px;
-    }
     .app-name {
       font-size: .9rem;
       font-weight: 800;
@@ -102,12 +94,14 @@
       align-items: center;
       gap: 8px;
     }
+
     .logo-dot {
       width: 8px; height: 8px;
       border-radius: 50%;
       background: var(--coral);
       display: inline-block;
     }
+
     .mode-pill {
       background: var(--s2);
       border: 1px solid var(--bdr1);
@@ -120,21 +114,54 @@
       text-transform: uppercase;
     }
 
-    /* ─── Screens ─────────────────────── */
     .screen { display: none; }
     .screen.active { display: block; animation: in .16s ease; }
     @keyframes in { from { opacity:0; transform:translateY(5px); } to { opacity:1; transform:translateY(0); } }
 
-    /* ─── Hero card ───────────────────── */
+    .page-title {
+      font-size: 2.2rem;
+      font-weight: 900;
+      letter-spacing: -.07em;
+      line-height: 1;
+      margin-bottom: 18px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--bdr0);
+    }
+
+    .page-intro, .text {
+      color: var(--t1);
+      font-size: .875rem;
+      line-height: 1.65;
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      color: var(--coral);
+      font-size: .68rem;
+      text-transform: uppercase;
+      letter-spacing: .13em;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .section-heading {
+      font-size: 1.8rem;
+      font-weight: 900;
+      letter-spacing: -.055em;
+      line-height: 1.06;
+      margin-bottom: 18px;
+    }
+
     .hero-card {
       background: var(--s1);
       border: 1px solid var(--bdr1);
       border-radius: var(--rL);
-      padding: 28px 22px 24px;
+      padding: 24px 22px;
       margin-bottom: 14px;
       position: relative;
       overflow: hidden;
     }
+
     .hero-card::before {
       content: '';
       position: absolute;
@@ -142,108 +169,64 @@
       transform: translateX(-50%);
       width: 220px; height: 220px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(224,104,120,.11) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(224,104,120,.09) 0%, transparent 70%);
       pointer-events: none;
     }
+
     .hero-logo {
-      width: 80px; height: 80px;
+      width: min(170px, 58%);
+      height: auto;
       object-fit: contain;
       display: block;
-      margin: 0 auto 20px;
+      margin: 0 auto 18px;
       border-radius: 20px;
       position: relative;
     }
+
     .hero-title {
-      font-size: 1.7rem;
+      font-size: 1.9rem;
       font-weight: 900;
       letter-spacing: -.06em;
       line-height: 1.08;
       text-align: center;
       margin-bottom: 10px;
+      position: relative;
     }
+
     .hero-sub {
       color: var(--t1);
-      font-size: .875rem;
+      font-size: .9rem;
       line-height: 1.68;
       text-align: center;
       margin-bottom: 22px;
-    }
-    .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-      justify-content: center;
-      margin-bottom: 22px;
-    }
-    .hero-tag {
-      font-size: .72rem;
-      font-weight: 700;
-      letter-spacing: .03em;
-      padding: 6px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--bdr1);
-      background: var(--s2);
-      color: var(--t1);
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-    .hero-tag.hot {
-      background: var(--c10);
-      border-color: var(--c30);
-      color: var(--coral);
+      position: relative;
     }
 
-    /* ─── Stats strip ─────────────────── */
-    .stats-strip {
+    .home-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 8px;
-      margin-bottom: 14px;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      position: relative;
     }
-    .stat-box {
-      background: var(--s1);
-      border: 1px solid var(--bdr0);
-      border-radius: var(--r);
-      padding: 16px 10px;
-      text-align: center;
-    }
-    .stat-num {
-      font-size: 1.5rem;
-      font-weight: 900;
-      letter-spacing: -.05em;
-      line-height: 1;
-      margin-bottom: 5px;
-    }
-    .stat-num.coral { color: var(--coral); }
-    .stat-num.blue  { color: var(--blue); }
-    .stat-lbl { font-size: .63rem; font-weight: 700; color: var(--t2); text-transform: uppercase; letter-spacing: .07em; }
 
-    /* ─── Download box ────────────────── */
     .dl-box {
       background: var(--s1);
       border: 1px solid var(--bdr1);
       border-radius: var(--rL);
       padding: 22px;
-      margin-bottom: 14px;
+      margin: 14px 0;
       position: relative;
       overflow: hidden;
     }
-    .dl-box::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--coral), var(--blue));
-    }
+.dl-box::after, .card-stripe { display: none !important; }
+
     .dl-box h3 { font-size: 1.05rem; font-weight: 800; letter-spacing: -.035em; margin-bottom: 8px; }
     .dl-box p  { color: var(--t1); font-size: .875rem; line-height: 1.65; margin-bottom: 18px; }
 
-    /* ─── Locked note ─────────────────── */
     .locked-note {
       display: none;
-      background: var(--c10);
-      border: 1px solid var(--c30);
+      background: var(--s1);
+      border: 1px solid var(--bdr1);
       border-radius: var(--r);
       padding: 13px 16px;
       color: var(--t1);
@@ -251,11 +234,11 @@
       line-height: 1.6;
       font-weight: 500;
     }
-    body.locked   .locked-note { display: block; }
-    body.locked   .app-only    { display: none !important; }
+
+    body.locked .locked-note { display: block; }
+    body.locked .app-only { display: none !important; }
     body.unlocked .locked-only { display: none !important; }
 
-    /* ─── Buttons ─────────────────────── */
     .btn {
       display: flex;
       align-items: center;
@@ -274,56 +257,19 @@
       background: var(--coral);
       color: #fff;
     }
+
     .btn:hover  { opacity: .85; }
     .btn:active { transform: scale(.97); }
     .btn.blue-btn { background: var(--blue); }
-    .btn.ghost {
+    .btn.ghost, .btn.secondary {
       background: var(--s2);
       border: 1px solid var(--bdr1);
       color: var(--t1);
     }
-    .btn.ghost:hover { border-color: var(--bdr2); color: var(--t0); }
+
+    .btn.ghost:hover, .btn.secondary:hover { border-color: var(--bdr2); color: var(--t0); }
     .btn i.ph { font-size: 1rem; }
-    .home-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
-    /* ─── Section divider ─────────────── */
-    .sec-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 14px;
-      margin-top: 8px;
-    }
-    .sec-label {
-      font-size: .68rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .13em;
-      color: var(--coral);
-      white-space: nowrap;
-    }
-    .sec-line {
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, var(--c18), transparent);
-    }
-
-    /* ─── Page title ──────────────────── */
-    .page-title {
-      font-size: 2.2rem;
-      font-weight: 900;
-      letter-spacing: -.07em;
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-    .page-intro {
-      color: var(--t1);
-      font-size: .875rem;
-      line-height: 1.65;
-      margin-bottom: 22px;
-    }
-
-    /* ─── Cards ───────────────────────── */
     .card {
       background: var(--s1);
       border: 1px solid var(--bdr0);
@@ -334,14 +280,11 @@
       overflow: hidden;
       transition: border-color .15s, background .15s;
     }
+
     .card:hover { border-color: var(--bdr1); background: var(--s2); }
-    .card-stripe {
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, var(--coral), var(--blue), transparent);
-    }
-    .card.blue-card .card-stripe { background: linear-gradient(90deg, var(--blue), var(--coral), transparent); }
+    .card h3 { font-size: 1rem; font-weight: 700; letter-spacing: -.03em; margin-bottom: 6px; }
+    .card p  { color: var(--t1); line-height: 1.65; font-size: .875rem; margin-bottom: 14px; }
+    .card p:last-child { margin-bottom: 0; }
 
     .card-icon {
       width: 40px; height: 40px;
@@ -353,13 +296,9 @@
       font-size: 1.15rem;
       margin-bottom: 14px;
     }
+
     .card.blue-card .card-icon { background: var(--b10); border-color: var(--b30); color: var(--blue); }
 
-    .card h3 { font-size: 1rem; font-weight: 700; letter-spacing: -.03em; margin-bottom: 6px; }
-    .card p  { color: var(--t1); line-height: 1.65; font-size: .875rem; margin-bottom: 16px; }
-    .card p:last-child { margin-bottom: 0; }
-
-    /* ─── Cert card ───────────────────── */
     .cert-card {
       background: var(--s1);
       border: 1px solid var(--bdr0);
@@ -368,32 +307,40 @@
       margin-bottom: 10px;
       transition: border-color .14s;
     }
+
     .cert-card:hover { border-color: var(--bdr1); }
-    .cert-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 7px; }
+    .cert-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 7px; }
     .cert-top h3 { font-size: .98rem; font-weight: 700; letter-spacing: -.03em; }
-    .badge {
+
+    .badge, .status {
       display: inline-flex; align-items: center; gap: 4px;
       font-size: .65rem; font-weight: 800;
       text-transform: uppercase; letter-spacing: .07em;
       padding: 4px 9px; border-radius: 6px;
       background: var(--c10); color: var(--coral); border: 1px solid var(--c30);
+      white-space: nowrap;
     }
-    .badge i.ph { font-size: .75rem; }
-    .badge.blue { background: var(--b10); color: var(--blue); border-color: var(--b30); }
-    .badge.dead { background: var(--s2); color: var(--t2); border-color: var(--bdr0); }
+
+    .badge.blue, .status.backup { background: var(--b10); color: var(--blue); border-color: var(--b30); }
+    .badge.dead, .status.revoked { background: var(--s2); color: var(--t2); border-color: var(--bdr0); }
+
     .cert-body { color: var(--t1); font-size: .875rem; line-height: 1.6; margin-bottom: 14px; }
 
-    /* ─── App icon in cards ───────────── */
     .app-icon {
-      width: 52px; height: 52px;
-      border-radius: 14px;
+      width: 86px; height: 86px;
+      border-radius: 22px;
       object-fit: cover;
       margin-bottom: 14px;
       border: 1px solid var(--bdr1);
       display: block;
     }
 
-    /* ─── FAQ ─────────────────────────── */
+    .app-icon.wide {
+      width: 120px;
+      object-fit: contain;
+      background: var(--s3);
+    }
+
     details {
       background: var(--s1);
       border: 1px solid var(--bdr0);
@@ -402,6 +349,7 @@
       margin-bottom: 8px;
       transition: border-color .12s;
     }
+
     details[open] { border-color: var(--bdr1); }
 
     summary {
@@ -416,6 +364,7 @@
       align-items: flex-start;
       gap: 14px;
     }
+
     .faq-toggle {
       flex-shrink: 0;
       width: 22px; height: 22px;
@@ -428,14 +377,16 @@
       transition: background .14s, transform .14s;
       margin-top: 1px;
     }
+
     details[open] .faq-toggle { background: var(--c10); transform: rotate(45deg); }
+
     details p {
       color: var(--t1); line-height: 1.72; margin-top: 12px;
       font-size: .875rem; padding-top: 12px; border-top: 1px solid var(--bdr0);
     }
 
-    /* ─── Search ──────────────────────── */
     .search-wrap { position: relative; margin-bottom: 14px; }
+
     .search-icon {
       position: absolute;
       left: 13px; top: 50%;
@@ -445,18 +396,20 @@
       pointer-events: none;
       display: flex;
     }
-    .search {
+
+    .search, .search-box {
       width: 100%;
       background: var(--s1); border: 1px solid var(--bdr1);
       color: var(--t0); border-radius: var(--r);
       padding: 13px 16px 13px 38px;
       font-family: inherit; font-size: .875rem;
       outline: none; transition: border-color .12s;
+      margin-bottom: 14px;
     }
-    .search:focus { border-color: var(--coral); }
-    .search::placeholder { color: var(--t2); }
 
-    /* ─── Link rows ───────────────────── */
+    .search:focus, .search-box:focus { border-color: var(--coral); }
+    .search::placeholder, .search-box::placeholder { color: var(--t2); }
+
     .link-row {
       display: flex; align-items: center;
       justify-content: space-between; gap: 12px;
@@ -467,15 +420,10 @@
       transition: border-color .12s, background .12s;
       position: relative; overflow: hidden;
     }
-    .link-row::before {
-      content: ''; position: absolute;
-      left: 0; top: 0; bottom: 0; width: 3px;
-      background: linear-gradient(180deg, var(--coral), var(--blue));
-      opacity: 0; transition: opacity .14s;
-    }
-    .link-row:hover::before { opacity: 1; }
+
     .link-row:hover { border-color: var(--bdr1); background: var(--s2); }
     .link-row-meta { display: flex; align-items: center; gap: 12px; }
+
     .link-icon-wrap {
       width: 34px; height: 34px;
       border-radius: 9px;
@@ -486,9 +434,9 @@
       font-size: .95rem;
       flex-shrink: 0;
     }
-    .chev { color: var(--t2); display: flex; align-items: center; }
 
-    /* ─── Bottom nav ──────────────────── */
+    .chev { color: var(--t2); display: flex; align-items: center; font-size: 1.4rem; }
+
     .nav {
       position: fixed; left: 50%;
       bottom: max(14px, env(safe-area-inset-bottom));
@@ -502,6 +450,7 @@
       border: 1px solid var(--bdr1);
       border-radius: 22px; padding: 8px;
     }
+
     body.locked .nav { display: none; }
 
     .tab {
@@ -513,9 +462,83 @@
       cursor: pointer; transition: color .12s, background .12s, transform .1s;
       font-size: 1.25rem;
     }
+
     .tab:hover { color: var(--t1); }
     .tab:active { transform: scale(.92); }
     .tab.active { background: var(--coral); color: #fff; }
+
+
+    .form-card {
+      background: var(--s1);
+      border: 1px solid var(--bdr0);
+      border-radius: var(--rL);
+      padding: 20px;
+      margin-bottom: 10px;
+    }
+
+    .field {
+      display: grid;
+      gap: 7px;
+      margin-bottom: 14px;
+    }
+
+    .field label {
+      color: var(--t0);
+      font-size: .82rem;
+      font-weight: 800;
+      letter-spacing: -.015em;
+    }
+
+    .field small {
+      color: var(--t2);
+      font-weight: 700;
+    }
+
+    .file-input, .text-input {
+      width: 100%;
+      background: var(--s2);
+      border: 1px solid var(--bdr1);
+      color: var(--t0);
+      border-radius: 13px;
+      padding: 12px;
+      font-family: inherit;
+      font-size: .85rem;
+      outline: none;
+    }
+
+    .file-input::file-selector-button {
+      border: 0;
+      border-radius: 10px;
+      padding: 8px 10px;
+      margin-right: 10px;
+      background: var(--coral);
+      color: #fff;
+      font-family: inherit;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .text-input:focus, .file-input:focus { border-color: var(--coral); }
+
+    .hint-box, .sign-result {
+      border: 1px solid var(--bdr0);
+      background: var(--s2);
+      border-radius: var(--r);
+      padding: 14px;
+      color: var(--t1);
+      line-height: 1.6;
+      font-size: .86rem;
+      margin-bottom: 14px;
+    }
+
+    .sign-result { display: none; }
+    .sign-result.show { display: block; }
+    .sign-result.good { border-color: var(--b30); background: var(--b10); }
+    .sign-result.bad { border-color: var(--c30); background: var(--c10); }
+    .sign-result h3 { color: var(--t0); font-size: 1rem; margin-bottom: 7px; letter-spacing: -.03em; }
+    .sign-result p { margin-bottom: 12px; }
+    .sign-result p:last-child { margin-bottom: 0; }
+    .sign-result .btn { margin-top: 12px; }
 
     @media (min-width:700px) {
       .shell { margin: 18px auto; min-height: calc(100svh - 36px); border-radius: 28px; overflow: hidden; }
@@ -526,7 +549,7 @@
 <div class="shell">
 <div class="content">
 
-  <header class="topbar">
+  <header class="topbar" aria-hidden="true">
     <span class="app-name">
       <span class="logo-dot"></span>
       SamHub <span style="color:var(--t2);font-weight:500;font-size:.82rem;">v2.0</span>
@@ -538,185 +561,201 @@
 
     <!-- HOME -->
     <section class="screen active" id="page-home">
+      <h1 class="page-title">Home</h1>
+
       <div class="hero-card">
-        <img class="hero-logo" src="Made_By_Sam.webp" alt="SamHub" />
-        <h1 class="hero-title">SamHub.<br>Revamped.</h1>
-        <p class="hero-sub">Your sideloading hub — DNS methods, certificates, direct installs, and guides. All in one place.</p>
-        <div class="hero-tags">
-          <span class="hero-tag hot"><i class="ph ph-fire"></i> Active Certs</span>
-          <span class="hero-tag">DNS Guides</span>
-          <span class="hero-tag">Direct Installs</span>
-        </div>
+        <img class="hero-logo" src="Made_By_Sam.webp" alt="SamHub v2.0 logo" />
+        <h2 class="hero-title">This is SamHub. Revamped.</h2>
+        <p class="hero-sub">Welcome to SamHub v2.0. A sideloading hub with guides, DNS Methods, Direct Installs, powered by a team that fulfills your expectation of your sideloading experience.</p>
+
         <div class="home-grid app-only">
-          <button class="btn ghost" type="button" style="cursor:not-allowed;opacity:.4;" disabled>
-            <i class="ph ph-lock"></i> SamSign — Soon
-          </button>
-          <a class="btn route-link" href="#direct-installs" data-page="direct-installs">
-            Tools <i class="ph ph-arrow-right"></i>
-          </a>
+          <a class="btn route-link" href="#samsign" data-page="samsign" data-nav-page="home">SamSign</a>
+          <a class="btn ghost route-link" href="#direct-installs" data-page="direct-installs">Direct Installs</a>
         </div>
       </div>
 
-      <div class="stats-strip app-only">
-        <div class="stat-box">
-          <div class="stat-num coral">3</div>
-          <div class="stat-lbl">Active Certs</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-num blue">2</div>
-          <div class="stat-lbl">Installers</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-num" style="color:var(--t0);">1</div>
-          <div class="stat-lbl">DNS Active</div>
-        </div>
-      </div>
-
-      <div class="dl-box locked-only">
+      <div class="dl-box locked-only" id="downloadBox">
         <h3>Download SamHub v2.0</h3>
-        <p>Install the iOS webclip profile to unlock the full app experience. Only this Home page is visible before installing.</p>
+        <p>Install the iOS webclip profile to unlock the full app experience. Before installing, only this Home page is available.</p>
         <a class="btn" href="https://samhub.mejjiaserrano126.workers.dev/SamHub-v2-SIGNED.mobileconfig">
-          <i class="ph ph-download-simple"></i> Download Profile
+          <i class="ph ph-download-simple"></i> Download Now
         </a>
       </div>
 
-      <div class="locked-note locked-only">App sections unlock after SamHub opens from your iOS Home Screen webclip.</div>
+      <div class="locked-note locked-only">App sections unlock after SamHub opens from the iOS Home Screen webclip.</div>
     </section>
 
     <!-- DNS -->
     <section class="screen app-only" id="page-dns">
       <h1 class="page-title">DNS Methods</h1>
-      <p class="page-intro">Block Apple's tracking servers and keep your certificates alive longer.</p>
+      <div class="section-title">DNS Methods</div>
 
       <div class="card">
-        <div class="card-stripe"></div>
         <div class="card-icon"><i class="ph ph-globe"></i></div>
-        <h3>What is a DNS method?</h3>
-        <p>DNS methods block the Apple servers that constantly track your device with a given certificate. Sideloading communities use them to reduce blacklist issues and extend certificate life.</p>
+        <h3>DNS Methods</h3>
+        <p>You might be familiar with the "DNS Method" term, let's explain what that is.</p>
+        <p>DNS methods are used by sideloading communities to help reduce certificate blacklist issues. They are equipped with blocking out Apple servers that constantly track your device with the said certificate you attempt to use.</p>
+        <p>There are certain things you can and can't do. That can be explained below.</p>
       </div>
 
-      <div class="card blue-card">
-        <div class="card-stripe"></div>
+      <div class="card">
         <div class="card-icon"><i class="ph ph-shield-check"></i></div>
         <h3>Khoindvn DNS</h3>
-        <p>The recommended DNS profile. Install this before attempting direct installs or using any certificate.</p>
-        <a class="btn blue-btn" href="https://example.com" target="_blank" rel="noreferrer">
-          <i class="ph ph-download-simple"></i> Download DNS Profile
+        <p>Install this DNS profile before trying direct installs or certificates.</p>
+        <a class="btn" href="https://example.com" target="_blank" rel="noreferrer">
+          <i class="ph ph-download-simple"></i> Download Khoindvn DNS
         </a>
       </div>
 
-      <div class="sec-header">
-        <span class="sec-label">FAQ</span>
-        <div class="sec-line"></div>
-      </div>
+      <details>
+        <summary>
+          Can I restart my device whilst still using the DNS? What if my device dies? What if I need to install an update?
+          <span class="faq-toggle"><i class="ph ph-plus"></i></span>
+        </summary>
+        <p>Restarting your device does not keep the DNS on, it's simple to know that. Once your phone is turned on, those seconds without WiFi/data not activated yet are Apple's abilities to "blacklist" you from the use of the said certificate. It's best to ALWAYS keep the said device on. In cases of installing a new update, you MUST turn on Airplane Mode before doing so, then allowing device to connect to internet afterwards.</p>
+      </details>
 
       <details>
         <summary>
-          What happens if my device restarts or dies?
+          Can I use a VPN whilst on the DNS?
           <span class="faq-toggle"><i class="ph ph-plus"></i></span>
         </summary>
-        <p>Restarting turns off the DNS. In those first seconds of boot before your network activates, Apple can blacklist your certificate. Keep the device on. When installing updates, enable Airplane Mode first — then reconnect after the update completes.</p>
+        <p>Most VPNs available pause the DNS even while it's activated through your DNS settings. It's best to not enable one. There are certain ways to get around that, but it's more safer to just stick with the DNS.</p>
       </details>
+
       <details>
         <summary>
-          Can I use a VPN alongside the DNS?
+          Could I use any other DNS than the preferred one available?
           <span class="faq-toggle"><i class="ph ph-plus"></i></span>
         </summary>
-        <p>Most VPNs override and disable the DNS even when it appears active in your settings. It's safest to avoid VPNs while using the DNS method.</p>
-      </details>
-      <details>
-        <summary>
-          Can I use a different DNS provider?
-          <span class="faq-toggle"><i class="ph ph-plus"></i></span>
-        </summary>
-        <p>Other providers have different configurations. The DNS available here has been extensively tested and consistently performs as intended. Stick with it.</p>
+        <p>Other DNS's have their own sets of configurations, modifications, but it's mostly preferred to stick with the one we at SamHub recommend. It's not something to constantly worry about, as multiple tests prove the recommended DNS available here works as it intends to.</p>
       </details>
     </section>
 
     <!-- CERTIFICATES -->
     <section class="screen app-only" id="page-certificates">
       <h1 class="page-title">Certificates</h1>
-      <p class="page-intro">All available certs from 2024–25 through 2026. Download DNS first before installing any certificate.</p>
+      <div class="section-title">Certificates</div>
+      <p class="text">Here is the page of all available certificates up to date between the dates of 2024-25, to current 2026.</p>
 
       <div class="search-wrap">
         <span class="search-icon"><i class="ph ph-magnifying-glass"></i></span>
-        <input class="search" id="certSearch" type="search" placeholder="Search certificates…" />
+        <input class="search" id="certSearch" type="search" placeholder="Search certificates..." />
       </div>
 
-      <div id="certGrid">
-        <article class="cert-card" data-name="hdfc codex signed">
+      <div id="certificateGrid">
+        <article class="cert-card" data-name="hdfc codex certificate signed">
           <div class="cert-top">
             <h3>Codex HDFC</h3>
-            <span class="badge"><i class="ph ph-check"></i> Signed</span>
+            <span class="status">Signed</span>
           </div>
-          <p class="cert-body">Install DNS before using. Reliable primary certificate.</p>
+          <p class="cert-body">Download DNS before using this certificate. Update this card when status changes.</p>
           <a class="btn" href="https://example.com" target="_blank" rel="noreferrer">
             <i class="ph ph-download-simple"></i> Download
           </a>
         </article>
 
-        <article class="cert-card" data-name="shanghai backup signed">
+        <article class="cert-card" data-name="shanghai backup certificate backup signed">
           <div class="cert-top">
             <h3>Shanghai Backup</h3>
-            <span class="badge blue"><i class="ph ph-arrows-clockwise"></i> Backup</span>
+            <span class="status backup">Backup</span>
           </div>
-          <p class="cert-body">Use this if the primary certificate is not working.</p>
+          <p class="cert-body">Use this if the main certificate is not working.</p>
           <a class="btn blue-btn" href="https://example.com" target="_blank" rel="noreferrer">
             <i class="ph ph-download-simple"></i> Download
           </a>
         </article>
 
-        <article class="cert-card" data-name="sunshine insurance signed">
+        <article class="cert-card" data-name="sunshine insurance certificate signed">
           <div class="cert-top">
             <h3>Sunshine Insurance</h3>
-            <span class="badge"><i class="ph ph-check"></i> Signed</span>
+            <span class="status">Signed</span>
           </div>
-          <p class="cert-body">Includes p12, mobileprovision, password, and notes.</p>
+          <p class="cert-body">Good spot for p12, mobileprovision, password, and notes.</p>
           <a class="btn" href="https://example.com" target="_blank" rel="noreferrer">
             <i class="ph ph-download-simple"></i> Download
           </a>
         </article>
 
-        <article class="cert-card" data-name="old certificate revoked">
+        <article class="cert-card revoked-cert" data-name="old certificate revoked">
           <div class="cert-top">
             <h3>Old Certificate</h3>
-            <span class="badge dead"><i class="ph ph-x"></i> Revoked</span>
+            <span class="status revoked">Revoked</span>
           </div>
-          <p class="cert-body">This certificate is no longer active.</p>
-          <a class="btn ghost" style="opacity:.4;cursor:not-allowed;" onclick="return false;">
+          <p class="cert-body">Keep revoked cards if you want users to know which certs no longer work.</p>
+          <a class="btn ghost" href="https://example.com" target="_blank" rel="noreferrer">
             <i class="ph ph-prohibit"></i> Unavailable
           </a>
         </article>
       </div>
     </section>
 
+
+    <!-- SAMSIGN -->
+    <section class="screen app-only" id="page-samsign">
+      <h1 class="page-title">SamSign</h1>
+      <div class="section-title">IPA Signer</div>
+      <p class="text">Upload your IPA and signing files. When signing finishes, your install link will appear here.</p>
+
+      <form class="form-card" id="samSignForm" enctype="multipart/form-data">
+        <div class="field">
+          <label for="signIpa">IPA File</label>
+          <input class="file-input" id="signIpa" name="ipa" type="file" accept=".ipa,application/octet-stream" required />
+        </div>
+
+        <div class="field">
+          <label for="signP12">Certificate File</label>
+          <input class="file-input" id="signP12" name="p12" type="file" accept=".p12,application/x-pkcs12" required />
+        </div>
+
+        <div class="field">
+          <label for="signMobileProvision">Provisioning Profile</label>
+          <input class="file-input" id="signMobileProvision" name="mobileprovision" type="file" accept=".mobileprovision,application/octet-stream" required />
+        </div>
+
+        <div class="field">
+          <label for="signP12Password">Certificate Password <small>(optional)</small></label>
+          <input class="text-input" id="signP12Password" name="p12_password" type="password" placeholder="Enter password if needed" autocomplete="off" />
+        </div>
+
+        <button class="btn" id="samSignSubmit" type="submit">
+          <i class="ph ph-upload-simple"></i> Sign IPA
+        </button>
+      </form>
+
+      <div class="sign-result" id="samSignResult" aria-live="polite"></div>
+    </section>
+
     <!-- DIRECT INSTALLS -->
     <section class="screen app-only" id="page-direct-installs">
       <h1 class="page-title">Tools</h1>
-      <p class="page-intro">Direct installs for signing apps on your device. Always use DNS first.</p>
-
-      <div class="sec-header">
-        <span class="sec-label">Installers</span>
-        <div class="sec-line"></div>
-      </div>
+      <div class="section-title">Direct Installs</div>
+      <h2 class="section-heading">Available Direct Installs</h2>
 
       <article class="card">
-        <div class="card-stripe"></div>
-        <img class="app-icon" src="https://esign-ios.app/wp-content/uploads/2025/06/Esign.webp" alt="ESign" />
-        <h3>ESign</h3>
-        <p>Sign and install IPA files directly on your device. One of the most reliable options available.</p>
-        <a class="btn route-link" href="#esign" data-page="esign">
-          View Installs <i class="ph ph-arrow-right"></i>
+        <div class="card-icon"><i class="ph ph-signature"></i></div>
+        <h3>SamSign</h3>
+        <p>Sign IPA files directly from your device.</p>
+        <a class="btn route-link" href="#samsign" data-page="samsign" data-nav-page="direct-installs">
+          Open SamSign <i class="ph ph-arrow-right"></i>
         </a>
       </article>
 
-      <article class="card blue-card">
-        <div class="card-stripe"></div>
-        <img class="app-icon" src="https://scarlet-ios.com/images/Scarlet-hero-shot.webp" alt="Scarlet" style="object-fit:contain;background:var(--s3);" />
+      <article class="card">
+        <img class="app-icon" src="https://esign-ios.app/wp-content/uploads/2025/06/Esign.webp" alt="ESign logo" />
+        <h3>ESign</h3>
+        <p>For signing and installing IPA files.</p>
+        <a class="btn route-link" href="#esign" data-page="esign">
+          Click Here <i class="ph ph-arrow-right"></i>
+        </a>
+      </article>
+
+      <article class="card">
+        <img class="app-icon wide" src="https://scarlet-ios.com/images/Scarlet-hero-shot.webp" alt="Scarlet logo" />
         <h3>Scarlet</h3>
-        <p>Another strong option for signing and installing IPA files. Try backup if main says unable to install.</p>
-        <a class="btn blue-btn route-link" href="#scarlet" data-page="scarlet">
-          View Installs <i class="ph ph-arrow-right"></i>
+        <p>For signing and installing IPA files.</p>
+        <a class="btn route-link" href="#scarlet" data-page="scarlet">
+          Click Here <i class="ph ph-arrow-right"></i>
         </a>
       </article>
     </section>
@@ -724,81 +763,89 @@
     <!-- ESIGN -->
     <section class="screen app-only" id="page-esign">
       <h1 class="page-title">ESign</h1>
-      <p class="page-intro">Download DNS first before installing any of the links below.</p>
+      <p class="text">Download DNS before installing.</p>
+
       <a class="link-row" href="https://example.com" target="_blank" rel="noreferrer">
         <div class="link-row-meta">
           <span class="link-icon-wrap"><i class="ph ph-download-simple"></i></span>
-          <span>ESign — Main</span>
+          <span>ESign Main Install</span>
         </div>
-        <span class="chev"><i class="ph ph-caret-right"></i></span>
+        <span class="chev">›</span>
       </a>
+
       <a class="link-row" href="https://example.com" target="_blank" rel="noreferrer">
         <div class="link-row-meta">
           <span class="link-icon-wrap"><i class="ph ph-arrows-clockwise"></i></span>
-          <span>ESign — Backup</span>
+          <span>ESign Backup Install</span>
         </div>
-        <span class="chev"><i class="ph ph-caret-right"></i></span>
+        <span class="chev">›</span>
       </a>
+
       <a class="link-row" href="https://example.com" target="_blank" rel="noreferrer">
         <div class="link-row-meta">
           <span class="link-icon-wrap"><i class="ph ph-copy"></i></span>
-          <span>ESign — Mirror</span>
+          <span>ESign Mirror Install</span>
         </div>
-        <span class="chev"><i class="ph ph-caret-right"></i></span>
+        <span class="chev">›</span>
       </a>
     </section>
 
     <!-- SCARLET -->
     <section class="screen app-only" id="page-scarlet">
       <h1 class="page-title">Scarlet</h1>
-      <p class="page-intro">Use DNS first. If Scarlet says unable to install, move to the backup link.</p>
+      <p class="text">Use DNS first. If Scarlet says unable to install, try the backup link.</p>
+
       <a class="link-row" href="https://example.com" target="_blank" rel="noreferrer">
         <div class="link-row-meta">
           <span class="link-icon-wrap"><i class="ph ph-download-simple"></i></span>
-          <span>Scarlet — Main</span>
+          <span>Scarlet Main Install</span>
         </div>
-        <span class="chev"><i class="ph ph-caret-right"></i></span>
+        <span class="chev">›</span>
       </a>
+
       <a class="link-row" href="https://example.com" target="_blank" rel="noreferrer">
         <div class="link-row-meta">
           <span class="link-icon-wrap"><i class="ph ph-arrows-clockwise"></i></span>
-          <span>Scarlet — Backup</span>
+          <span>Scarlet Backup Install</span>
         </div>
-        <span class="chev"><i class="ph ph-caret-right"></i></span>
+        <span class="chev">›</span>
       </a>
+
       <a class="link-row" href="https://example.com" target="_blank" rel="noreferrer">
         <div class="link-row-meta">
           <span class="link-icon-wrap"><i class="ph ph-copy"></i></span>
-          <span>Scarlet — Mirror</span>
+          <span>Scarlet Mirror Install</span>
         </div>
-        <span class="chev"><i class="ph ph-caret-right"></i></span>
+        <span class="chev">›</span>
       </a>
     </section>
 
     <!-- SUPPORT -->
     <section class="screen app-only" id="page-support">
       <h1 class="page-title">Support</h1>
-      <p class="page-intro">Get help, watch tutorials, or reach out directly.</p>
+
       <a class="link-row" href="https://discord.com" target="_blank" rel="noreferrer">
         <div class="link-row-meta">
           <span class="link-icon-wrap"><i class="ph ph-discord-logo"></i></span>
-          <span>Discord Community</span>
+          <span>Discord</span>
         </div>
-        <span class="chev"><i class="ph ph-caret-right"></i></span>
+        <span class="chev">›</span>
       </a>
+
       <a class="link-row" href="mailto:youremail@example.com">
         <div class="link-row-meta">
           <span class="link-icon-wrap"><i class="ph ph-envelope-simple"></i></span>
           <span>Email Support</span>
         </div>
-        <span class="chev"><i class="ph ph-caret-right"></i></span>
+        <span class="chev">›</span>
       </a>
+
       <a class="link-row" href="https://youtube.com" target="_blank" rel="noreferrer">
         <div class="link-row-meta">
           <span class="link-icon-wrap"><i class="ph ph-youtube-logo"></i></span>
-          <span>YouTube Tutorials</span>
+          <span>YouTube</span>
         </div>
-        <span class="chev"><i class="ph ph-caret-right"></i></span>
+        <span class="chev">›</span>
       </a>
     </section>
 
@@ -809,7 +856,7 @@
   <button class="tab route-link" data-page="direct-installs" aria-label="Tools">
     <i class="ph ph-wrench"></i>
   </button>
-  <button class="tab route-link" data-page="dns" aria-label="DNS">
+  <button class="tab route-link" data-page="dns" aria-label="DNS Methods">
     <i class="ph ph-globe"></i>
   </button>
   <button class="tab route-link active" data-page="home" aria-label="Home">
@@ -825,15 +872,173 @@
 </div>
 
 <script>
-  const screens=document.querySelectorAll('.screen'),routeLinks=document.querySelectorAll('.route-link'),tabs=document.querySelectorAll('.tab'),modePill=document.getElementById('modePill'),certSearch=document.getElementById('certSearch'),certGrid=document.getElementById('certGrid'),allowed=['home','dns','certificates','direct-installs','esign','scarlet','support'];
-  function isStandalone(){const i=/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);return i&&(window.navigator.standalone===true||window.matchMedia('(display-mode: standalone)').matches);}
-  function unlocked(){const p=new URLSearchParams(location.search);if(p.get('preview')==='1')return true;if(p.get('gate')==='1')return false;return isStandalone();}
-  function setMode(){const ok=unlocked();document.body.classList.toggle('locked',!ok);document.body.classList.toggle('unlocked',ok);modePill.textContent=ok?'App':'Install Required';return ok;}
-  function showPage(page,scroll=true){const ok=setMode(),safe=allowed.includes(page)?page:'home',dest=ok?safe:'home';screens.forEach(s=>s.classList.toggle('active',s.id===`page-${dest}`));tabs.forEach(t=>t.classList.toggle('active',t.dataset.page===dest));if(location.hash!==`#${dest}`)history.replaceState(null,'',`#${dest}`);if(scroll)window.scrollTo({top:0,behavior:'smooth'});}
-  routeLinks.forEach(el=>el.addEventListener('click',e=>{e.preventDefault();showPage(el.dataset.page);}));
-  window.addEventListener('load',()=>showPage(location.hash.replace('#','')||'home',false));
-  window.addEventListener('popstate',()=>showPage(location.hash.replace('#',''),false));
-  if(certSearch)certSearch.addEventListener('input',()=>{const q=certSearch.value.trim().toLowerCase();certGrid.querySelectorAll('.cert-card').forEach(c=>{c.style.display=(c.dataset.name+c.textContent).toLowerCase().includes(q)?'':'none';});});
+  const screens = document.querySelectorAll('.screen');
+  const routeLinks = document.querySelectorAll('.route-link');
+  const tabs = document.querySelectorAll('.tab');
+  const modePill = document.getElementById('modePill');
+  const certSearch = document.getElementById('certSearch');
+  const certificateGrid = document.getElementById('certificateGrid');
+  const samSignForm = document.getElementById('samSignForm');
+  const samSignSubmit = document.getElementById('samSignSubmit');
+  const samSignResult = document.getElementById('samSignResult');
+  const SAMSIGN_SIGN_ENDPOINT = '/sign';
+  const allowedPages = ['home', 'dns', 'certificates', 'direct-installs', 'samsign', 'esign', 'scarlet', 'support'];
+
+  function isRunningAsIOSWebClip() {
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    const standalone = window.navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches;
+    return isIOS && standalone;
+  }
+
+  function isUnlocked() {
+    const params = new URLSearchParams(location.search);
+    if (params.get('preview') === '1') return true;
+    if (params.get('gate') === '1') return false;
+    return isRunningAsIOSWebClip();
+  }
+
+  function setMode() {
+    const unlocked = isUnlocked();
+    document.body.classList.toggle('locked', !unlocked);
+    document.body.classList.toggle('unlocked', unlocked);
+
+    if (modePill) {
+      modePill.textContent = unlocked ? 'App Version' : 'Install Required';
+    }
+
+    return unlocked;
+  }
+
+  function showPage(page, shouldScroll = true, navPageOverride = null) {
+    const unlocked = setMode();
+    const safePage = allowedPages.includes(page) ? page : 'home';
+    const finalPage = unlocked ? safePage : 'home';
+
+    screens.forEach(screen => {
+      screen.classList.toggle('active', screen.id === `page-${finalPage}`);
+    });
+
+    const activeNavPage = navPageOverride || (finalPage === 'samsign' ? 'home' : finalPage);
+
+    tabs.forEach(tab => {
+      tab.classList.toggle('active', tab.dataset.page === activeNavPage);
+    });
+
+    if (location.hash !== `#${finalPage}`) {
+      history.replaceState(null, '', `#${finalPage}`);
+    }
+
+    if (shouldScroll) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  routeLinks.forEach(link => {
+    link.addEventListener('click', event => {
+      event.preventDefault();
+      showPage(link.dataset.page, true, link.dataset.navPage || null);
+    });
+  });
+
+  window.addEventListener('load', () => {
+    const page = location.hash.replace('#', '') || 'home';
+    showPage(page, false);
+  });
+
+  window.addEventListener('popstate', () => {
+    showPage(location.hash.replace('#', ''), false);
+  });
+
+  if (certSearch && certificateGrid) {
+    certSearch.addEventListener('input', () => {
+      const query = certSearch.value.trim().toLowerCase();
+
+      certificateGrid.querySelectorAll('.cert-card').forEach(card => {
+        const text = `${card.dataset.name || ''} ${card.textContent || ''}`.toLowerCase();
+        card.style.display = text.includes(query) ? '' : 'none';
+      });
+    });
+  }
+
+  function setSamSignResult(kind, title, message, installLink) {
+    if (!samSignResult) return;
+
+    samSignResult.className = `sign-result show ${kind === 'error' ? 'bad' : 'good'}`;
+    samSignResult.replaceChildren();
+
+    const heading = document.createElement('h3');
+    heading.textContent = title;
+    samSignResult.appendChild(heading);
+
+    const text = document.createElement('p');
+    text.textContent = message;
+    samSignResult.appendChild(text);
+
+    if (installLink) {
+      const link = document.createElement('a');
+      link.className = 'btn';
+      link.href = installLink;
+      link.target = '_blank';
+      link.rel = 'noreferrer';
+      link.textContent = 'Install Signed App';
+      samSignResult.appendChild(link);
+    }
+  }
+
+  if (samSignForm) {
+    samSignForm.addEventListener('submit', async event => {
+      event.preventDefault();
+
+      const formData = new FormData(samSignForm);
+      const hasIpa = formData.get('ipa') instanceof File && formData.get('ipa').size > 0;
+      const hasP12 = formData.get('p12') instanceof File && formData.get('p12').size > 0;
+      const hasMobileProvision = formData.get('mobileprovision') instanceof File && formData.get('mobileprovision').size > 0;
+
+      if (!hasIpa || !hasP12 || !hasMobileProvision) {
+        setSamSignResult('error', 'Missing files', 'Upload the required files before signing.');
+        return;
+      }
+
+      setSamSignResult('ok', 'Signing started', 'Keep this page open until your install link appears.');
+
+      if (samSignSubmit) {
+        samSignSubmit.disabled = true;
+        samSignSubmit.style.opacity = '.55';
+        samSignSubmit.textContent = 'Signing...';
+      }
+
+      try {
+        const response = await fetch(SAMSIGN_SIGN_ENDPOINT, {
+          method: 'POST',
+          body: formData,
+        });
+
+        const contentType = response.headers.get('content-type') || '';
+        const payload = contentType.includes('application/json') ? await response.json() : {};
+
+        if (!response.ok) {
+          throw new Error('Signing request failed.');
+        }
+
+        const installLink = payload.installLink || payload.install_link || payload.url;
+        if (!installLink) {
+          throw new Error('Install link missing.');
+        }
+
+        setSamSignResult('ok', 'Signing complete', 'Your signed IPA is ready.', installLink);
+      } catch (error) {
+        console.error(error);
+        setSamSignResult('error', 'Signing failed', 'Please try again. If it keeps failing, contact support.');
+      } finally {
+        if (samSignSubmit) {
+          samSignSubmit.disabled = false;
+          samSignSubmit.style.opacity = '';
+          samSignSubmit.innerHTML = '<i class="ph ph-upload-simple"></i> Sign IPA';
+        }
+      }
+    });
+  }
+
 </script>
 </body>
 </html>
